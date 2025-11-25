@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Equipamento")
+@Table(name="equipamento")
 
 public class Equipamento{
    @Id
@@ -22,6 +24,9 @@ public class Equipamento{
    @Column(name="descricao")
    private String descricao;
 
+  @ManyToOne
+  @JoinColumn(name = "id_laboratorio", referencedColumnName = "id")
+  private Laboratorio laboratorio;
    
     public Equipamento() {
 }
@@ -55,5 +60,13 @@ public class Equipamento{
     this.nome = nome;
     this.descricao = descricao;
 }
+
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
+    }
 
 }

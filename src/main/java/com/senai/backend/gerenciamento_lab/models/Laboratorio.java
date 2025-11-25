@@ -7,10 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Laboratorio")
+@Table(name="laboratorio")
 
 public class Laboratorio {
    @Id
@@ -24,10 +25,10 @@ public class Laboratorio {
    @Column(name="localizacao")
    private String localizacao;
   
- 
-     private List<Equipamento> equipamentos;
+   @OneToMany(mappedBy = "laboratorio")
+    private List<Equipamento> equipamentos;
 
- public Laboratorio() {
+    public Laboratorio() {
  }
    public Integer getId() {
     return id;
@@ -57,15 +58,15 @@ public class Laboratorio {
     return equipamentos;
    }
 
-   public void setEquipamentos(List<Equipamento> equipamentos) {
-    this.equipamentos = equipamentos;
+   public void setEquipamentos(List<Equipamento> equipamento) {
+    this.equipamentos = equipamento;
    }
 
-   public Laboratorio(Integer id, String nome, String localizacao, List<Equipamento> equipamentos) {
+   public Laboratorio(Integer id, String nome, String localizacao, List<Equipamento> equipamento) {
     this.id = id;
     this.nome = nome;
     this.localizacao = localizacao;
-    this.equipamentos = equipamentos;
+    this.equipamentos = equipamento;
 }
 
 
